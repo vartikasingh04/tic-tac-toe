@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outer{
+            height:450px;
+            width:450px;
+           border:15px solid aqua;
+           border-radius: 20px;
+         background-color: rgb(9, 53, 89);
+         position: relative;
+         top:140px;
+         left:500px;
+        }
+#b1{
+    height: 145px;
+    width: 145px;
+    border-right: 5px solid aqua;
+    float: left;
+    border-bottom: 5px solid aqua;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b2{
+    height: 145px;
+    width: 145px;
+    border-right: 5px solid aqua;
+    border-bottom: 5px solid aqua;
+    float: left;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b3{
+    height: 145px;
+    width: 145px;
+    border-bottom: 5px solid aqua;
+    float: left;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b4{
+    height: 145px;
+    width: 145px;
+    border-right: 5px solid aqua;
+    border-bottom: 5px solid aqua;
+float: left;
+font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b5{
+    height: 145px;
+    width: 145px;
+    border-right: 5px solid aqua;
+    border-bottom: 5px solid aqua;
+    float: left;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b6{
+    height: 145px;
+    width: 145px;
+    border-bottom: 5px solid aqua;
+    float: left;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b7{
+    height: 145px;
+    width: 145px;
+    float: left;
+    border-right: 5px solid aqua;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b8{
+    height: 145px;
+    width: 145px;
+    float: left;
+    border-right: 5px solid aqua;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+#b9{
+    height: 145px;
+    width: 145px;
+    float: left;
+    font-size: 80px;
+    text-align: center;
+    line-height: 145px;
+    color: white;
+}
+h1{
+color:wheat;
+        }
+    </style>
+    <script>
+        var turn =0;
+        var currentState =[2,2,2,2,2,2,2,2,2];
+        // where 0 means O and 1 means X and 2 means blank............
+        var winPosition = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,9],
+            [2,4,6]
+        ];
+        function turnchange(i, td)
+        {
+           if(currentState[i]==2)
+            {
+                if(turn==0)
+                {
+                    td.innerHTML = "O";
+                    turn = 1;
+                    currentState[i]=0;
+                    a1.play();
+                }
+                else{
+                    td.innerHTML ="X";
+                    turn =0;
+                    currentState[i]=1;
+                    a2.play();
+                }
+            }
+        var win = checkwinner();
+        if(win==0)
+        {
+        hint.innerHTML="O player WON";
+        page.style.backgroundImage="url('pa.gif')";
+
+        a3.play();
+        }
+        else if(win==1)
+        {
+        hint.innerHTML="X player WON";
+        page.style.backgroundImage="url('win.gif')";
+        a3.play();
+        }
+        }
+        function checkwinner()
+        {
+            var win =2;
+            for(var i=1;i<8;i++)
+            {
+        if(
+        currentState[winPosition[i][0]] ==currentState[winPosition[i][1]]
+         && currentState[winPosition[i][1]] == currentState[winPosition[i][2]]
+         && currentState[winPosition[i][0]] != 2
+        )
+        {
+        win = currentState[winPosition[i][0]];
+        break;
+        }
+        }
+        return win;
+        }
+        </script>
+</head>
+<body id="page">
+    <audio src="m1.wav" id="a1" ></audio>
+    <audio src="m2.wav" id="a2" ></audio>
+    <audio src="m3.wav" id="a3" ></audio>
+   <marquee direction="right" behavior="alternate"> <h1 id="hint"></h1></marquee>
+<div id="outer">
+<div id="1st">
+<div id="b1" onclick="turnchange(0,this)"></div>
+<div id="b2" onclick="turnchange(1,this)"></div>
+<div id="b3" onclick="turnchange(2,this)"></div>
+</div>
+<div id="2nd">
+<div id="b4" onclick="turnchange(3,this)"></div>
+<div id="b5" onclick="turnchange(4,this)"></div>
+<div id="b6" onclick="turnchange(5,this)"></div>
+</div>
+<div id="3rd">
+    <div id="b7" onclick="turnchange(6,this)"></div>
+    <div id="b8" onclick="turnchange(7,this)"></div>
+    <div id="b9" onclick="turnchange(8,this)"></div>  
+</div>
+    </div>
+</body>
+</html>
